@@ -19,6 +19,15 @@ class CurrentWeather {
 }
 
 @ObjectType()
+class DailyWeather {
+  @Field(() => [String])
+  time: string;
+
+  @Field(() => [Number])
+  weathercode: [number];
+}
+
+@ObjectType()
 export class Weather {
   @Field()
   latitude: string;
@@ -34,4 +43,7 @@ export class Weather {
 
   @Field()
   current_weather: CurrentWeather;
+
+  @Field()
+  daily: DailyWeather;
 }

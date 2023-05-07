@@ -8,7 +8,7 @@ export class WeatherResolver {
   async checkWeather(@Arg('lat') lat: string, @Arg('lon') lon: string) {
     try {
       const request = await axios.get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode&current_weather=true&timezone=GMT`
       );
       const { data } = request;
 

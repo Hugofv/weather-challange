@@ -20,6 +20,11 @@ type CurrentWeather {
   windspeed: Float!
 }
 
+type DailyWeather {
+  time: [String!]!
+  weathercode: [Float!]!
+}
+
 type Query {
   checkWeather(lat: String!, lon: String!): Weather!
   searchAddress(query: String!): [Address!]!
@@ -27,6 +32,7 @@ type Query {
 
 type Weather {
   current_weather: CurrentWeather!
+  daily: DailyWeather!
   display_name: String!
   latitude: String!
   longitude: String!
