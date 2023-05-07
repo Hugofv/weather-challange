@@ -14,13 +14,17 @@ type Address {
 
 type CurrentWeather {
   temperature: Float!
-  time: Float!
+  time: String!
   weathercode: Float!
   winddirection: Float!
   windspeed: Float!
 }
 
 type DailyWeather {
+  sunrise: [String!]!
+  sunset: [String!]!
+  temperature_2m_max: [Float!]!
+  temperature_2m_min: [Float!]!
   time: [String!]!
   weathercode: [Float!]!
 }

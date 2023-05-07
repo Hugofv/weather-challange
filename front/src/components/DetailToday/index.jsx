@@ -1,3 +1,5 @@
+import { WiThermometer, WiWindy } from 'weather-icons-react';
+
 import {
   BoxContent,
   BoxTemperature,
@@ -5,44 +7,33 @@ import {
   BoxCondition,
   BoxDate,
 } from './styles';
+import { WEATHER_INTERPRETATION_CONDE } from '../../config/constants';
 
-const DetailToday = ({ city, weather, refetch }) => {
+const DetailToday = ({ address, currentWeather }) => {
   //   const date = DateTime.fromMillis(weather?.dt * 1000);
 
+  console.log(currentWeather);
   return (
     <BoxContent>
-      <div
-        minWidth='10rem'
-        position='relative'
-        display='flex'
-        flexDirection='column'
-        alignItems='center'
-      >
-        <BoxTitle>
-          {city?.city}, {city?.principalSubdivision} - {city?.countryName}
-        </BoxTitle>
-        <div display='flex' alignItems='center'>
-          <img
-            src={`http://openweathermap.org/img/wn/${weather?.weather?.[0].icon}@4x.png`}
-            // alt={capitalizeFirstLetter(weather?.weather[0].main)}
-          />
-          <BoxTemperature>{Math.round(weather?.temp || 0)}º C</BoxTemperature>
-        </div>
+      <div>
+        <BoxTitle>{address?.display_name}</BoxTitle>
+        <BoxTemperature>
+          <WiThermometer />
+          {Math.round(currentWeather?.temperature || 0)}º C
+        </BoxTemperature>
 
-        {!!weather ? (
-          <div textAlign='center'>
+        {!!currentWeather ? (
+          <div>
             <BoxCondition>
-              {/* {capitalizeFirstLetter(weather?.weather[0].description)} */}
+              {WEATHER_INTERPRETATION_CONDE?.[currentWeather.weathercode]}
             </BoxCondition>
-            <BoxDate>{/* {date.toFormat('dd/MM/yyyy HH:mm')} */}</BoxDate>
+            <BoxDate>{currentWeather.time}</BoxDate>
 
             <div>
               <span>
-                Sensação Térmica: {Math.round(weather?.feels_like || 0)}º C{' '}
+                <WiWindy /> Velocidade do vento: {currentWeather?.windspeed}{' '}
+                Km/h
               </span>
-              <span>Umidade: {weather?.humidity}% </span>
-              <span>Pressão: {weather?.pressure}hPa </span>
-              <span>UV: {weather?.uvi} UV </span>
             </div>
           </div>
         ) : null}

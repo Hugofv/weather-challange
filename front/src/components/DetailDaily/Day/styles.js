@@ -15,6 +15,9 @@ export const BackgroundBlur = styled.div`
 
 export const WrapperContent = styled.div`
   color: white;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 0.5fr 2fr 0.5fr 0.5fr;
   font-weight: bold;
   z-index: 2;
   padding: 20px;

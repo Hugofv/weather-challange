@@ -1,10 +1,8 @@
-import DetailDay from '../../components/DetailDay';
-import DetailToday from '../../components/DetailToday';
-import { Wrapper } from './styles';
-import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
 import { useEffect, useMemo, useState } from 'react';
 import Select from 'react-select';
 import { useDebounce } from 'use-debounce';
+import { DetailDaily, DetailToday } from '../../components';
 
 const SEARCH_ADDRESS = gql`
   query ($query: String!) {
@@ -24,10 +22,17 @@ const CHECK_WEATHER = gql`
       daily {
         time
         weathercode
+        sunrise
+        sunset
+        temperature_2m_max
+        temperature_2m_min
       }
       current_weather {
         temperature
         windspeed
+        time
+        weathercode
+        winddirection
       }
     }
   }
@@ -82,12 +87,11 @@ const Weather = () => {
         onInputChange={(val) => setSearch(val)}
       />
 
-      <DetailToday city={{}} weather={{}} />
-      <Wrapper>
-        {dataWeather?.daily?.map((item) => (
-          <DetailDay key={item.dt} item={item} />
-        ))}
-      </Wrapper>
+      <DetailToday
+        address={itemSelected}
+        currentWeather={dataWeather?.checkWeather?.current_weather}
+      />
+      <DetailDaily daily={dataWeather?.checkWeather?.daily} />
     </>
   );
 };

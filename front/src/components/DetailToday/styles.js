@@ -12,6 +12,8 @@ export const BoxTitle = styled.h4`
 
 export const BoxTemperature = styled.h2`
   font-weight: bold;
+  display: flex;
+  align-items: center;
   font-size: 4rem;
 `;
 

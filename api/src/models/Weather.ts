@@ -15,7 +15,7 @@ class CurrentWeather {
   weathercode: number;
 
   @Field()
-  time: number;
+  time: string;
 }
 
 @ObjectType()
@@ -25,6 +25,18 @@ class DailyWeather {
 
   @Field(() => [Number])
   weathercode: [number];
+
+  @Field(() => [Number])
+  temperature_2m_max: [number];
+
+  @Field(() => [Number])
+  temperature_2m_min: [number];
+
+  @Field(() => [String])
+  sunrise: [string];
+
+  @Field(() => [String])
+  sunset: [string];
 }
 
 @ObjectType()

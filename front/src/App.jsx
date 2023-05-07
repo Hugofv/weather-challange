@@ -1,7 +1,13 @@
 import Weather from './Containers/Weather';
+import GlobalStyle from './globalStyles'
 
 const App = () => {
-  return <Weather />;
+  return (
+    <>
+      <GlobalStyle />
+      <Weather />
+    </>
+  );
 };
 
 export default App;
