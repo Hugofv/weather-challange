@@ -3,13 +3,22 @@ import { format, parse, parseISO } from 'date-fns';
 import { WEATHER_INTERPRETATION_CONDE } from '../../../config/constants';
 import {
   BackgroundBlur,
+  BoxDay,
   BoxMax,
   BoxMin,
+  TextDescription,
   WrapperContent,
   WrapperDay,
   WrapperWeekDay,
 } from './styles';
 import Flex from '../../Flex';
+import ptBR from 'date-fns/locale/pt-BR';
+import {
+  WiDirectionDown,
+  WiDirectionUp,
+  WiSunrise,
+  WiSunset,
+} from 'weather-icons-react';
 
 const Day = ({
   time,
@@ -22,26 +31,43 @@ const Day = ({
   const date = parse(time, 'yyyy-MM-dd', new Date());
 
   return (
-    <Flex fullWidth gap='10px'>
+    <BoxDay>
       <BackgroundBlur />
       <WrapperContent>
-        <Flex flexDirection='column'>
+        <Flex alignItems='center' flexDirection='column'>
           <WrapperWeekDay>{format(date, 'dd')}</WrapperWeekDay>
-          <WrapperDay>{format(date, 'iii')}</WrapperDay>
+          <WrapperDay>
+            {format(date, 'iii', {
+              locale: ptBR,
+            })}
+          </WrapperDay>
         </Flex>
 
-        <p>{WEATHER_INTERPRETATION_CONDE?.[weathercode]}</p>
+        <TextDescription>
+          {WEATHER_INTERPRETATION_CONDE?.[weathercode]}
+        </TextDescription>
         <Flex flexDirection='column'>
-          <BoxMax>{temperature_2m_max}º C</BoxMax>
-          <BoxMin>{temperature_2m_min}º C</BoxMin>
+          <BoxMax>
+            <WiDirectionUp />
+            {temperature_2m_max}º C
+          </BoxMax>
+          <BoxMin>
+            <WiDirectionDown />
+            {temperature_2m_min}º C
+          </BoxMin>
         </Flex>
 
         <Flex flexDirection='column'>
-          <p>{format(parseISO(sunrise), 'HH:mm')}</p>
-          <p>{format(parseISO(sunset), 'HH:mm')}</p>
+          <BoxMax>
+            <WiSunrise />
+            {format(parseISO(sunrise), 'HH:mm')}
+          </BoxMax>
+          <BoxMin>
+            <WiSunset /> {format(parseISO(sunset), 'HH:mm')}
+          </BoxMin>
         </Flex>
       </WrapperContent>
-    </Flex>
+    </BoxDay>
   );
 };
 

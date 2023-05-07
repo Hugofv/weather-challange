@@ -1,8 +1,8 @@
-import Flex from '../Flex';
 import Day from './Day';
+import { WrapperContainer } from './styles';
 
 const DetailDaily = ({ daily }) => (
-  <Flex flexDirection='column' >
+  <WrapperContainer>
     {daily?.time?.map((time, i) => {
       const weathercode = daily.weathercode[i];
       const temperature_2m_min = daily.temperature_2m_min[i];
@@ -22,7 +22,7 @@ const DetailDaily = ({ daily }) => (
         />
       );
     })}
-  </Flex>
+  </WrapperContainer>
 );
 
 export default DetailDaily;

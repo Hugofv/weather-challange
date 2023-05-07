@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Select from 'react-select';
 import { useDebounce } from 'use-debounce';
 import { DetailDaily, DetailToday } from '../../components';
+import { WrapperSelect } from './styles';
 
 const SEARCH_ADDRESS = gql`
   query ($query: String!) {
@@ -79,13 +80,18 @@ const Weather = () => {
 
   return (
     <>
-      <Select
-        options={options}
-        isLoading={loading}
-        value={itemSelected}
-        onChange={(val) => setItemSelected(val)}
-        onInputChange={(val) => setSearch(val)}
-      />
+      <WrapperSelect>
+        <Select
+          options={options}
+          placeholder='Pesquise uma Cidade'
+          loadingMessage={() => 'Procurando...'}
+          noOptionsMessage={() => 'Sem Opções, informe uma cidade válida'}
+          isLoading={loading}
+          value={itemSelected}
+          onChange={(val) => setItemSelected(val)}
+          onInputChange={(val) => setSearch(val)}
+        />
+      </WrapperSelect>
 
       <DetailToday
         address={itemSelected}

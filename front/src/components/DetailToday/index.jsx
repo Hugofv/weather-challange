@@ -8,36 +8,46 @@ import {
   BoxDate,
 } from './styles';
 import { WEATHER_INTERPRETATION_CONDE } from '../../config/constants';
+import Flex from '../Flex';
+import { format, parseISO } from 'date-fns';
 
 const DetailToday = ({ address, currentWeather }) => {
-  //   const date = DateTime.fromMillis(weather?.dt * 1000);
-
-  console.log(currentWeather);
   return (
     <BoxContent>
-      <div>
-        <BoxTitle>{address?.display_name}</BoxTitle>
-        <BoxTemperature>
-          <WiThermometer />
-          {Math.round(currentWeather?.temperature || 0)}º C
-        </BoxTemperature>
+      {address ? (
+        <Flex
+          fullWidth
+          flexDirection='column'
+          alignItems='center'
+          justifyContent='center'
+        >
+          <BoxTitle>{address?.display_name}</BoxTitle>
+          <BoxTemperature>
+            <WiThermometer />
+            {Math.round(currentWeather?.temperature || 0)}º C
+          </BoxTemperature>
 
-        {!!currentWeather ? (
-          <div>
-            <BoxCondition>
-              {WEATHER_INTERPRETATION_CONDE?.[currentWeather.weathercode]}
-            </BoxCondition>
-            <BoxDate>{currentWeather.time}</BoxDate>
+          {!!currentWeather ? (
+            <Flex alignItems='center' flexDirection='column'>
+              <BoxCondition>
+                {WEATHER_INTERPRETATION_CONDE?.[currentWeather.weathercode]}
+              </BoxCondition>
+              <BoxDate>
+                {format(parseISO(currentWeather.time), 'dd/MM/yyyy HH:mm')}
+              </BoxDate>
 
-            <div>
-              <span>
-                <WiWindy /> Velocidade do vento: {currentWeather?.windspeed}{' '}
-                Km/h
-              </span>
-            </div>
-          </div>
-        ) : null}
-      </div>
+              <Flex alignItems='center' gap='10px'>
+                <WiWindy size={40} /> Velocidade do vento:{' '}
+                {currentWeather?.windspeed} Km/h
+              </Flex>
+            </Flex>
+          ) : null}
+        </Flex>
+      ) : (
+        <Flex fullWidth justifyContent='center'>
+          <BoxTitle>Escolha uma cidade</BoxTitle>
+        </Flex>
+      )}
     </BoxContent>
   );
 };

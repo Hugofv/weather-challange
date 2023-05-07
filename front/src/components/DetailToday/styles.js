@@ -2,19 +2,22 @@ import styled from 'styled-components';
 
 export const BoxContent = styled.div`
   color: #fff;
-  padding: 2rem;
+  padding: 0 2rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const BoxTitle = styled.h4`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   margin-bottom: 0;
+  margin-top: 0;
 `;
 
 export const BoxTemperature = styled.h2`
   font-weight: bold;
   display: flex;
   align-items: center;
-  font-size: 4rem;
+  font-size: 3rem;
+  margin: 0;
 `;
 
 export const BoxCondition = styled.span`
