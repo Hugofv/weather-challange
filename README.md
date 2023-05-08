@@ -1,10 +1,8 @@
 # React App to Detail weather From City
 
-## Install dependencies
+## Install dependencies and Start Application
 
-# Start Application
-
-## API
+### API
 
 Enter on folder `cd api` and install dependencies
 
@@ -14,7 +12,7 @@ After starting the app using `npm dev` or `yarn dev`
 
 The application will be running on `http://localhost:4000`
 
-## Front
+### Front
 
 Enter on folder `cd front` and install dependencies
 
