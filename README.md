@@ -1,4 +1,4 @@
-# React App to Detail weather from current location
+# React App to Detail weather From City
 
 ## Install dependencies
 
